@@ -47,8 +47,8 @@ class HHParser:
                 salary_from = 0
                 salary_to = 0
             else:
-                salary_from = vacancy['salary']['from'] if vacancy['salary']['from'] else 0
-                salary_to = vacancy['salary']['to'] if vacancy['salary']['to'] else 0
+                salary_from = vacancy['salary']['from'] if vacancy['salary']['from'] else vacancy['salary']['to']
+                salary_to = vacancy['salary']['to'] if vacancy['salary']['to'] else vacancy['salary']['from']
             filter_data_vacancies.append({
                 'id': vacancy['id'],
                 'name': vacancy['name'],

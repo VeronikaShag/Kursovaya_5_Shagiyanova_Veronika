@@ -3,7 +3,7 @@ import requests
 
 class HHParser:
     def get_requests(self):
-        """ТОП-10 компаний"""
+        """ТОП-10 компаний."""
         params = {
             'per_page': 10,
             'sort_by': "by_vacancies_open"
@@ -13,6 +13,7 @@ class HHParser:
             return response.json()['items']
 
     def get_employers(self):
+        """Выгрузка данных о компаниях."""
         data = self.get_requests()
         employers = []
         for employer in data:
@@ -20,6 +21,7 @@ class HHParser:
         return employers
 
     def get_vacancies_from_company(self, id):
+        """Выгрузка данных о вакансиях."""
         params = {
             'per_page': 20,
             'employer_id': id
@@ -29,6 +31,7 @@ class HHParser:
             return response.json()['items']
 
     def get_all_vacancies(self):
+        """Выгрузка всех вакансий."""
         employers = self.get_employers()
         vacancies = []
         for employer in employers:
@@ -36,6 +39,7 @@ class HHParser:
         return vacancies
 
     def filter_vacancies(self):
+        """Составление словаря с вакансиями."""
         vacancies = self.get_all_vacancies()
         filter_data_vacancies = []
         for vacancy in vacancies:

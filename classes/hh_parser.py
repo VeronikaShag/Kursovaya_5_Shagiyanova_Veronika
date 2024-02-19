@@ -1,16 +1,16 @@
 import requests
 
+
 class HHParser:
     def get_requests(self):
         """ТОП-10 компаний"""
         params = {
             'per_page': 10,
-            'sort_by' : "by_vacancies_open"
+            'sort_by': "by_vacancies_open"
         }
         response = requests.get('https://api.hh.ru/employers', params)
         if response.status_code == 200:
             return response.json()['items']
-
 
     def get_employers(self):
         data = self.get_requests()
@@ -28,14 +28,12 @@ class HHParser:
         if response.status_code == 200:
             return response.json()['items']
 
-
     def get_all_vacancies(self):
         employers = self.get_employers()
         vacancies = []
         for employer in employers:
             vacancies.extend(self.get_vacancies_from_company(employer['id']))
         return vacancies
-
 
     def filter_vacancies(self):
         vacancies = self.get_all_vacancies()
@@ -60,8 +58,7 @@ class HHParser:
         return filter_data_vacancies
 
 
-
 hh = HHParser()
-#hh.get_requests()
-#print(hh.get_vacancies_from_company(1942330))
-#print(hh.filter_vacancies())
+# hh.get_requests()
+# print(hh.get_vacancies_from_company(1942330))
+# print(hh.filter_vacancies())

@@ -5,6 +5,7 @@ from config import config
 
 
 def create_database(db_name):
+    """Создание БД."""
     conn = psycopg2.connect(dbname='postgres', **config())
     conn.autocommit = True
     cur = conn.cursor()
@@ -16,6 +17,7 @@ def create_database(db_name):
 
 
 def create_tables(db_name):
+    """Создание таблиц"""
     conn = psycopg2.connect(dbname=db_name, **config())
     with conn:
         with conn.cursor() as cur:
@@ -39,6 +41,7 @@ def create_tables(db_name):
 
 
 def insert_data_info_tables(db_name):
+    """Добавление данных в таблицы."""
     hh = HHParser()
     employers = hh.get_employers()
     vacancies = hh.filter_vacancies()

@@ -1,7 +1,7 @@
 import psycopg2
 
 from classes.hh_parser import HHParser
-from config import config
+from utils.config import config
 
 
 def create_database(db_name):

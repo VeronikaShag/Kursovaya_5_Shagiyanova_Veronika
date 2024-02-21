@@ -54,17 +54,8 @@ class DBManager:
         conn = psycopg2.connect(dbname=self.db_name, **config())
         with conn:
             with conn.cursor() as cur:
-                cur.execute("""SELECT name, salary_from, salary_to, url FROM vacancies 
-        WHERE name LIKE  (%s)""", (f'%{keyword}%'))
+                cur.execute(f"SELECT name, salary_from, salary_to, url FROM vacancies WHERE name LIKE '%{keyword}%';")
                 result = cur.fetchall()
         conn.close()
 
         return result
-
-        # result = self.execute_query(f"""SELECT name, salary_from, salary_to, url FROM vacancies
-        # WHERE name LIKE  (%s)""", (f'%{keyword}%'))
-        # return result
-
-
-# db = DBManager('lk')
-# print(db.get_vacancies_with_keyword('Ozon'))

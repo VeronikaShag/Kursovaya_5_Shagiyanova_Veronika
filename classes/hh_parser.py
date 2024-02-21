@@ -60,9 +60,3 @@ class HHParser:
                 'employer': vacancy['employer']['id'],
             })
         return filter_data_vacancies
-
-
-hh = HHParser()
-# hh.get_requests()
-# print(hh.get_vacancies_from_company(1942330))
-# print(hh.filter_vacancies())

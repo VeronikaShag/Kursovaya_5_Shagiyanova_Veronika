@@ -36,6 +36,5 @@ if __name__ == '__main__':
 
     elif answer == 5:
         keyword = input('Введите слово для поиска: ')
-        print(db.get_vacancies_with_keyword(keyword))
-
-
+        for i in db.get_vacancies_with_keyword(keyword):
+            print(f'{i[0]} - ЗП от {i[1]} до {i[2]} - {i[3]}')
